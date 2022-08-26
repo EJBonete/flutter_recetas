@@ -13,23 +13,62 @@ class AuthBackground extends StatelessWidget {
       height: double.infinity,
       decoration: Constants.gradient(),
       child: Stack(
+        children: const [Headboard(), _PurpleBox()],
+      ),
+    );
+  }
+}
+
+class _PurpleBox extends StatelessWidget {
+  const _PurpleBox({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: double.infinity,
+      height: size.height * 0.4,
+      // decoration: _buildBorDecoration(),
+      child: Stack(
         children: const [
-          _Headboard(),
+          Positioned(
+            top: 90,
+            left: 30,
+            child: _Bubble(),
+          ),
+          Positioned(
+            top: -40,
+            left: -30,
+            child: _Bubble(),
+          ),
+          Positioned(
+            top: -50,
+            right: -20,
+            child: _Bubble(),
+          ),
+          Positioned(
+            bottom: 120,
+            right: 20,
+            child: _Bubble(),
+          ),
         ],
       ),
     );
   }
 }
 
-class _Headboard extends StatelessWidget {
-  const _Headboard({Key? key}) : super(key: key);
+class _Bubble extends StatelessWidget {
+  const _Bubble({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Container(
-      color: Colors.red,
-      height: size.height * 0.4,
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        color: const Color.fromARGB(42, 255, 205, 155),
+      ),
     );
   }
 }
